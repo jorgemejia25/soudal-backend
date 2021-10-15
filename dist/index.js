@@ -47,7 +47,7 @@ var db_1 = require("./db/db");
 dotenv_1.default.config();
 // Express Server
 var app = (0, express_1.default)();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT;
 // Body-parser
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({
@@ -56,7 +56,7 @@ app.use(express_1.default.urlencoded({
 // Router
 app.use(index_1.router);
 // Listening
-app.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
+app.listen(process.env.PORT, function () { return __awaiter(void 0, void 0, void 0, function () {
     var error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
