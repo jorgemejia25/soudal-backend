@@ -10,7 +10,7 @@ dotenv.config();
 // Express Server
 
 const app: express.Application = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // Body-parser
 
@@ -27,7 +27,7 @@ app.use(router);
 
 // Listening
 
-app.listen(port, async () => {
+app.listen(process.env.PORT, async () => {
   console.log(`Server listening on port ${port}`);
 
   try {
