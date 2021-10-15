@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+var express_1 = require("express");
+var product_controller_1 = require("../controllers/product.controller");
+var auth_controller_1 = require("../controllers/auth.controller");
+var auth_1 = require("../middlewares/auth");
+var image_controller_1 = require("../controllers/image.controller");
+exports.router = (0, express_1.Router)();
+var productController = new product_controller_1.ProductController();
+exports.router.post("/create", auth_1.rutasProtegidas, productController.crear);
+exports.router.get("/view", productController.ver);
+exports.router.get("/categoria/:categoria", productController.verCategoria);
+exports.router.get("/image/:img", image_controller_1.verImagen);
+exports.router.post("/auth", auth_controller_1.authController);
