@@ -14,6 +14,7 @@ exports.sequelize = new sequelize_1.Sequelize(process.env.DB_DATABASE, process.e
     dialectOptions: {
         ssl: {
             require: true,
+            rejectUnauthorized: false,
         },
     },
 });
