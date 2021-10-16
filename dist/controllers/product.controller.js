@@ -99,7 +99,7 @@ var ProductController = /** @class */ (function () {
                                 descripcion: fields.descripcion,
                                 caracteristicas: fields.caracteristicas,
                                 aplicaciones: fields.aplicaciones,
-                                imagen: finalUrl,
+                                imagen: ruta,
                             })];
                     case 1:
                         lastProductCreated = _a.sent();

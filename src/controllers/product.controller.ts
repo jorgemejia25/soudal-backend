@@ -73,7 +73,7 @@ export class ProductController {
         descripcion: fields.descripcion as string,
         caracteristicas: fields.caracteristicas as string,
         aplicaciones: fields.aplicaciones as string,
-        imagen: finalUrl as string,
+        imagen: ruta,
       });
 
       return res.status(201).json({
