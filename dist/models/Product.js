@@ -14,15 +14,15 @@ exports.Product = db_1.sequelize.define("Producto", {
         allowNull: false,
     },
     descripcion: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(2000),
         allowNull: false,
     },
     caracteristicas: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(2000),
         allowNull: false,
     },
     aplicaciones: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(2000),
         allowNull: false,
     },
     imagen: {

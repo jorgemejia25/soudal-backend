@@ -15,15 +15,15 @@ export const Product = sequelize.define(
       allowNull: false,
     },
     descripcion: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
       allowNull: false,
     },
     caracteristicas: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
       allowNull: false,
     },
     aplicaciones: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
       allowNull: false,
     },
     imagen: {
