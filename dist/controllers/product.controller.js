@@ -91,6 +91,8 @@ var ProductController = /** @class */ (function () {
                                 nombre: fields.nombre,
                                 categoria: fields.categoria,
                                 descripcion: fields.descripcion,
+                                caracteristicas: fields.caracteristicas,
+                                aplicaciones: fields.aplicaciones,
                                 imagen: finalUrl,
                             })];
                     case 1:

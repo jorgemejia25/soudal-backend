@@ -9,11 +9,19 @@ exports.Product = db_1.sequelize.define("Producto", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    categoria: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     descripcion: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    categoria: {
+    caracteristicas: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    aplicaciones: {
         type: DataTypes.STRING,
         allowNull: false,
     },

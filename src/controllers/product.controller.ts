@@ -58,6 +58,8 @@ export class ProductController {
           nombre: fields.nombre as string,
           categoria: fields.categoria as string,
           descripcion: fields.descripcion as string,
+          caracteristicas: fields.caracteristicas as string,
+          aplicaciones: fields.aplicaciones as string,
           imagen: finalUrl as string,
         });
 

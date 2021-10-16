@@ -10,11 +10,19 @@ export const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    categoria: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    categoria: {
+    caracteristicas: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    aplicaciones: {
       type: DataTypes.STRING,
       allowNull: false,
     },
