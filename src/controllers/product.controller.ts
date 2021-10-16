@@ -4,6 +4,7 @@ import express from "express";
 import formidable from "formidable";
 import fs from "fs";
 import path from "path";
+import request from "request";
 import { sequelize } from "../db/db";
 
 const uploadDir = path.join(__dirname, "../../public/files");
@@ -29,6 +30,8 @@ export class ProductController {
       uploadDir,
     });
 
+    let ruta: string;
+
     form.parse(req, async (err, fields, files) => {
       // try {
       let fileName: string | undefined = undefined;
@@ -53,6 +56,16 @@ export class ProductController {
       }
 
       Product.sync();
+
+      request.post(
+        "https://api.imgbb.com/1/upload",
+        { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } },
+        function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            ruta = body.data.url;
+          }
+        }
+      );
 
       const lastProductCreated = await Product.create({
         nombre: fields.nombre as string,

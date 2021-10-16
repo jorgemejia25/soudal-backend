@@ -44,6 +44,7 @@ var Product_1 = require("../models/Product");
 var formidable_1 = __importDefault(require("formidable"));
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
+var request_1 = __importDefault(require("request"));
 var db_1 = require("../db/db");
 var uploadDir = path_1.default.join(__dirname, "../../public/files");
 var isFileValid = function (file) {
@@ -65,6 +66,7 @@ var ProductController = /** @class */ (function () {
             maxFileSize: 50 * 1024 * 1024,
             uploadDir: uploadDir,
         });
+        var ruta;
         form.parse(req, function (err, fields, files) { return __awaiter(_this, void 0, void 0, function () {
             var fileName, finalUrl, file, isValid, lastProductCreated;
             return __generator(this, function (_a) {
@@ -86,6 +88,11 @@ var ProductController = /** @class */ (function () {
                             fs_1.default.renameSync(file.path, path_1.default.join(uploadDir, fileName));
                         }
                         Product_1.Product.sync();
+                        request_1.default.post("https://api.imgbb.com/1/upload", { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } }, function (error, response, body) {
+                            if (!error && response.statusCode == 200) {
+                                ruta = body.data.url;
+                            }
+                        });
                         return [4 /*yield*/, Product_1.Product.create({
                                 nombre: fields.nombre,
                                 categoria: fields.categoria.toLowerCase(),
