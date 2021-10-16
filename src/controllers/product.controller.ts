@@ -62,6 +62,7 @@ export class ProductController {
         { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } },
         function (error, response, body) {
           if (!error && response.statusCode == 200) {
+            console.log(body);
             ruta = body.data.url;
           }
         }
