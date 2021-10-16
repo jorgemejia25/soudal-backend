@@ -31,6 +31,7 @@ export class ProductController {
     });
 
     let ruta: string;
+    let imageBody: any;
 
     form.parse(req, async (err, fields, files) => {
       // try {
@@ -62,7 +63,7 @@ export class ProductController {
         { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } },
         function (error, response, body) {
           if (!error && response.statusCode == 200) {
-            console.log(body);
+            imageBody = body;
             ruta = body.data.url;
           }
         }
@@ -80,6 +81,7 @@ export class ProductController {
       return res.status(201).json({
         message: "Success",
         finalUrl,
+        imageBody,
       });
       // } catch {
       //   return res.status(400).json({
