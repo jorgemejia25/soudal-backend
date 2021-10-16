@@ -66,11 +66,10 @@ var ProductController = /** @class */ (function () {
             uploadDir: uploadDir,
         });
         form.parse(req, function (err, fields, files) { return __awaiter(_this, void 0, void 0, function () {
-            var fileName, finalUrl, file, isValid, lastProductCreated, _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var fileName, finalUrl, file, isValid, lastProductCreated;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
                         fileName = undefined;
                         finalUrl = undefined;
                         if (files.img) {
@@ -96,17 +95,11 @@ var ProductController = /** @class */ (function () {
                                 imagen: finalUrl,
                             })];
                     case 1:
-                        lastProductCreated = _b.sent();
+                        lastProductCreated = _a.sent();
                         return [2 /*return*/, res.status(201).json({
                                 message: "Success",
                                 finalUrl: finalUrl,
                             })];
-                    case 2:
-                        _a = _b.sent();
-                        return [2 /*return*/, res.status(400).json({
-                                message: "Error",
-                            })];
-                    case 3: return [2 /*return*/];
                 }
             });
         }); });

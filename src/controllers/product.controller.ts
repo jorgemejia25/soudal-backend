@@ -30,48 +30,48 @@ export class ProductController {
     });
 
     form.parse(req, async (err, fields, files) => {
-      try {
-        let fileName: string | undefined = undefined;
-        let finalUrl: string | undefined = undefined;
+      // try {
+      let fileName: string | undefined = undefined;
+      let finalUrl: string | undefined = undefined;
 
-        if (files.img) {
-          const file: any = files.img;
+      if (files.img) {
+        const file: any = files.img;
 
-          const isValid: any = isFileValid(file);
+        const isValid: any = isFileValid(file);
 
-          fileName = encodeURIComponent(file.name.replace(/\s/g, "-"));
-          finalUrl = `${process.env.URL}/image/${fileName}`;
-          console.log(fileName);
+        fileName = encodeURIComponent(file.name.replace(/\s/g, "-"));
+        finalUrl = `${process.env.URL}/image/${fileName}`;
+        console.log(fileName);
 
-          if (!isValid) {
-            return res.status(400).json({
-              message: "Error",
-            });
-          }
-
-          fs.renameSync(file.path, path.join(uploadDir, fileName));
+        if (!isValid) {
+          return res.status(400).json({
+            message: "Error",
+          });
         }
 
-        Product.sync();
-
-        const lastProductCreated = await Product.create({
-          nombre: fields.nombre as string,
-          categoria: fields.categoria as string,
-          descripcion: fields.descripcion as string,
-          caracteristicas: fields.caracteristicas as string,
-          aplicaciones: fields.aplicaciones as string,
-          imagen: finalUrl as string,
-        });
-
-        return res.status(201).json({
-          message: "Success",
-          finalUrl,
-        });
-      } catch {
-        return res.status(400).json({
-          message: "Error",
-        });
+        fs.renameSync(file.path, path.join(uploadDir, fileName));
       }
+
+      Product.sync();
+
+      const lastProductCreated = await Product.create({
+        nombre: fields.nombre as string,
+        categoria: fields.categoria as string,
+        descripcion: fields.descripcion as string,
+        caracteristicas: fields.caracteristicas as string,
+        aplicaciones: fields.aplicaciones as string,
+        imagen: finalUrl as string,
+      });
+
+      return res.status(201).json({
+        message: "Success",
+        finalUrl,
+      });
+      // } catch {
+      //   return res.status(400).json({
+      //     message: "Error",
+      //   });
+      // }
     });
 
     return;

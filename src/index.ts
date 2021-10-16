@@ -11,7 +11,7 @@ dotenv.config();
 // Express Server
 
 const app: express.Application = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // CORS
 
@@ -36,7 +36,7 @@ app.use(router);
 
 // Listening
 
-app.listen(process.env.PORT, async () => {
+app.listen(port, async () => {
   console.log(`Server listening on port ${port}`);
 
   try {
