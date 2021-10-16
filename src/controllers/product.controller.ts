@@ -56,7 +56,7 @@ export class ProductController {
 
       const lastProductCreated = await Product.create({
         nombre: fields.nombre as string,
-        categoria: fields.categoria as string,
+        categoria: (fields.categoria as string).toLowerCase(),
         descripcion: fields.descripcion as string,
         caracteristicas: fields.caracteristicas as string,
         aplicaciones: fields.aplicaciones as string,
@@ -85,7 +85,7 @@ export class ProductController {
 
   async verCategoria(req: express.Request, res: express.Response) {
     const productos = await Product.findAll({
-      where: { categoria: req.params.categoria },
+      where: { categoria: req.params.categoria.toLowerCase() },
     });
 
     return res.json(productos);

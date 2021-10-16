@@ -88,7 +88,7 @@ var ProductController = /** @class */ (function () {
                         Product_1.Product.sync();
                         return [4 /*yield*/, Product_1.Product.create({
                                 nombre: fields.nombre,
-                                categoria: fields.categoria,
+                                categoria: fields.categoria.toLowerCase(),
                                 descripcion: fields.descripcion,
                                 caracteristicas: fields.caracteristicas,
                                 aplicaciones: fields.aplicaciones,
@@ -124,7 +124,7 @@ var ProductController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, Product_1.Product.findAll({
-                            where: { categoria: req.params.categoria },
+                            where: { categoria: req.params.categoria.toLowerCase() },
                         })];
                     case 1:
                         productos = _a.sent();
