@@ -10,6 +10,7 @@ export const router = Router();
 const productController = new ProductController();
 
 router.post("/create", rutasProtegidas, productController.crear);
+router.post("/test", rutasProtegidas, productController.test);
 router.get("/view", productController.ver);
 router.get("/categoria/:categoria", productController.verCategoria);
 router.get("/image/:img", verImagen);

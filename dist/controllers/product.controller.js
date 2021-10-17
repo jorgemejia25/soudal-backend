@@ -89,11 +89,15 @@ var ProductController = /** @class */ (function () {
                             fs_1.default.renameSync(file.path, path_1.default.join(uploadDir, fileName));
                         }
                         Product_1.Product.sync();
-                        request_1.default.post("https://api.imgbb.com/1/upload", { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } }, function (error, response, body) {
-                            if (!error && response.statusCode == 200) {
-                                imageBody = body;
-                                ruta = body.data.url;
-                            }
+                        (0, request_1.default)({
+                            url: "https://api.imgbb.com/1/upload",
+                            method: "POST",
+                            form: {
+                                key: "7fdacf80f6dae833d604004e1bf5a436",
+                                image: "https://as.com/meristation/imagenes/2021/07/26/noticias/1627303243_213719_1627303346_noticia_normal_recorte1.jpg",
+                            },
+                        }, function (error, response, body) {
+                            ruta = JSON.parse(body).data.url;
                         });
                         return [4 /*yield*/, Product_1.Product.create({
                                 nombre: fields.nombre,
@@ -142,6 +146,17 @@ var ProductController = /** @class */ (function () {
                 }
             });
         });
+    };
+    ProductController.prototype.test = function (req, res) {
+        // request.post({url:  "https://api.imgbb.com/1/upload", form: {
+        //   key: "7fdacf80f6dae833d604004e1bf5a436",
+        //   image:
+        //     "https://as.com/meristation/imagenes/2021/07/26/noticias/1627303243_213719_1627303346_noticia_normal_recorte1.jpg",
+        // } ,
+        //   function (error, response, body) {
+        //     console.log(body);
+        //   }
+        // );
     };
     return ProductController;
 }());

@@ -1,4 +1,3 @@
-import MongoDB from "mongodb";
 import { Product } from "../models/Product";
 import express from "express";
 import formidable from "formidable";
@@ -58,14 +57,18 @@ export class ProductController {
 
       Product.sync();
 
-      request.post(
-        "https://api.imgbb.com/1/upload",
-        { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } },
+      request(
+        {
+          url: "https://api.imgbb.com/1/upload",
+          method: "POST",
+          form: {
+            key: "7fdacf80f6dae833d604004e1bf5a436",
+            image:
+              "https://as.com/meristation/imagenes/2021/07/26/noticias/1627303243_213719_1627303346_noticia_normal_recorte1.jpg",
+          },
+        },
         function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            imageBody = body;
-            ruta = body.data.url;
-          }
+          ruta = JSON.parse(body).data.url;
         }
       );
 
@@ -105,5 +108,17 @@ export class ProductController {
     });
 
     return res.json(productos);
+  }
+
+  test(req: express.Request, res: express.Response) {
+    // request.post({url:  "https://api.imgbb.com/1/upload", form: {
+    //   key: "7fdacf80f6dae833d604004e1bf5a436",
+    //   image:
+    //     "https://as.com/meristation/imagenes/2021/07/26/noticias/1627303243_213719_1627303346_noticia_normal_recorte1.jpg",
+    // } ,
+    //   function (error, response, body) {
+    //     console.log(body);
+    //   }
+    // );
   }
 }
