@@ -98,6 +98,7 @@ var ProductController = /** @class */ (function () {
                             },
                         }, function (error, response, body) {
                             ruta = JSON.parse(body).data.url;
+                            console.log(ruta);
                         });
                         return [4 /*yield*/, Product_1.Product.create({
                                 nombre: fields.nombre,
