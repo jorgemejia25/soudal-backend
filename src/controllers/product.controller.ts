@@ -68,6 +68,7 @@ export class ProductController {
         },
         function (error, response, body) {
           ruta = JSON.parse(body).data.url;
+          console.log(ruta);
         }
       );
 
