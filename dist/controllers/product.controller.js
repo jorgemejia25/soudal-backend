@@ -69,53 +69,57 @@ var ProductController = /** @class */ (function () {
         var ruta;
         var imageBody;
         form.parse(req, function (err, fields, files) { return __awaiter(_this, void 0, void 0, function () {
-            var fileName, finalUrl, file, isValid, lastProductCreated;
+            var fileName, finalUrl, file, isValid;
+            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fileName = undefined;
-                        finalUrl = undefined;
-                        if (files.img) {
-                            file = files.img;
-                            isValid = isFileValid(file);
-                            fileName = encodeURIComponent(file.name.replace(/\s/g, "-"));
-                            finalUrl = process.env.URL + "/image/" + fileName;
-                            console.log(fileName);
-                            if (!isValid) {
-                                return [2 /*return*/, res.status(400).json({
-                                        message: "Error",
-                                    })];
-                            }
-                            fs_1.default.renameSync(file.path, path_1.default.join(uploadDir, fileName));
-                        }
-                        Product_1.Product.sync();
-                        (0, request_1.default)({
-                            url: "https://api.imgbb.com/1/upload",
-                            method: "POST",
-                            form: {
-                                key: "7fdacf80f6dae833d604004e1bf5a436",
-                                image: finalUrl,
-                            },
-                        }, function (error, response, body) {
-                            ruta = JSON.parse(body).data.url;
-                            console.log(ruta);
-                        });
-                        return [4 /*yield*/, Product_1.Product.create({
-                                nombre: fields.nombre,
-                                categoria: fields.categoria.toLowerCase(),
-                                descripcion: fields.descripcion,
-                                caracteristicas: fields.caracteristicas,
-                                aplicaciones: fields.aplicaciones,
-                                imagen: ruta,
+                fileName = undefined;
+                finalUrl = undefined;
+                if (files.img) {
+                    file = files.img;
+                    isValid = isFileValid(file);
+                    fileName = encodeURIComponent(file.name.replace(/\s/g, "-"));
+                    finalUrl = process.env.URL + "/image/" + fileName;
+                    console.log(fileName);
+                    if (!isValid) {
+                        return [2 /*return*/, res.status(400).json({
+                                message: "Error",
                             })];
-                    case 1:
-                        lastProductCreated = _a.sent();
-                        return [2 /*return*/, res.status(201).json({
-                                message: "Success",
-                                finalUrl: finalUrl,
-                                imageBody: imageBody,
-                            })];
+                    }
+                    fs_1.default.renameSync(file.path, path_1.default.join(uploadDir, fileName));
                 }
+                Product_1.Product.sync();
+                (0, request_1.default)({
+                    url: "https://api.imgbb.com/1/upload",
+                    method: "POST",
+                    form: {
+                        key: "7fdacf80f6dae833d604004e1bf5a436",
+                        image: finalUrl,
+                    },
+                }, function (error, response, body) { return __awaiter(_this, void 0, void 0, function () {
+                    var lastProductCreated;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                console.log(ruta);
+                                return [4 /*yield*/, Product_1.Product.create({
+                                        nombre: fields.nombre,
+                                        categoria: fields.categoria.toLowerCase(),
+                                        descripcion: fields.descripcion,
+                                        caracteristicas: fields.caracteristicas,
+                                        aplicaciones: fields.aplicaciones,
+                                        imagen: JSON.parse(body).data.url,
+                                    })];
+                            case 1:
+                                lastProductCreated = _a.sent();
+                                return [2 /*return*/, res.status(201).json({
+                                        message: "Success",
+                                        finalUrl: finalUrl,
+                                        ruta: ruta,
+                                    })];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
             });
         }); });
         return;

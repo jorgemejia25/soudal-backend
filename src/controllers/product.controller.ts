@@ -66,26 +66,26 @@ export class ProductController {
             image: finalUrl,
           },
         },
-        function (error, response, body) {
-          ruta = JSON.parse(body).data.url;
+        async (error, response, body) => {
           console.log(ruta);
+
+          const lastProductCreated = await Product.create({
+            nombre: fields.nombre as string,
+            categoria: (fields.categoria as string).toLowerCase(),
+            descripcion: fields.descripcion as string,
+            caracteristicas: fields.caracteristicas as string,
+            aplicaciones: fields.aplicaciones as string,
+            imagen: JSON.parse(body).data.url,
+          });
+
+          return res.status(201).json({
+            message: "Success",
+            finalUrl,
+            ruta,
+          });
         }
       );
 
-      const lastProductCreated = await Product.create({
-        nombre: fields.nombre as string,
-        categoria: (fields.categoria as string).toLowerCase(),
-        descripcion: fields.descripcion as string,
-        caracteristicas: fields.caracteristicas as string,
-        aplicaciones: fields.aplicaciones as string,
-        imagen: ruta,
-      });
-
-      return res.status(201).json({
-        message: "Success",
-        finalUrl,
-        imageBody,
-      });
       // } catch {
       //   return res.status(400).json({
       //     message: "Error",
