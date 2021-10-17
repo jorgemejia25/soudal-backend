@@ -63,8 +63,7 @@ export class ProductController {
           method: "POST",
           form: {
             key: "7fdacf80f6dae833d604004e1bf5a436",
-            image:
-              "https://as.com/meristation/imagenes/2021/07/26/noticias/1627303243_213719_1627303346_noticia_normal_recorte1.jpg",
+            image: finalUrl,
           },
         },
         function (error, response, body) {
