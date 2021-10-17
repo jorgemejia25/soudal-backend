@@ -67,6 +67,7 @@ var ProductController = /** @class */ (function () {
             uploadDir: uploadDir,
         });
         var ruta;
+        var imageBody;
         form.parse(req, function (err, fields, files) { return __awaiter(_this, void 0, void 0, function () {
             var fileName, finalUrl, file, isValid, lastProductCreated;
             return __generator(this, function (_a) {
@@ -90,7 +91,7 @@ var ProductController = /** @class */ (function () {
                         Product_1.Product.sync();
                         request_1.default.post("https://api.imgbb.com/1/upload", { json: { key: "7fdacf80f6dae833d604004e1bf5a436", image: finalUrl } }, function (error, response, body) {
                             if (!error && response.statusCode == 200) {
-                                console.log(body);
+                                imageBody = body;
                                 ruta = body.data.url;
                             }
                         });
@@ -107,6 +108,7 @@ var ProductController = /** @class */ (function () {
                         return [2 /*return*/, res.status(201).json({
                                 message: "Success",
                                 finalUrl: finalUrl,
+                                imageBody: imageBody,
                             })];
                 }
             });
