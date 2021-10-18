@@ -63,7 +63,7 @@ export class ProductController {
           method: "POST",
           form: {
             key: "7fdacf80f6dae833d604004e1bf5a436",
-            image: finalUrl,
+            image: files.img,
           },
         },
         async (error, response, body) => {

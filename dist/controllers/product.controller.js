@@ -93,7 +93,7 @@ var ProductController = /** @class */ (function () {
                     method: "POST",
                     form: {
                         key: "7fdacf80f6dae833d604004e1bf5a436",
-                        image: finalUrl,
+                        image: files.img,
                     },
                 }, function (error, response, body) { return __awaiter(_this, void 0, void 0, function () {
                     var lastProductCreated;
