@@ -101,6 +101,7 @@ var ProductController = /** @class */ (function () {
                         switch (_a.label) {
                             case 0:
                                 console.log(ruta);
+                                console.log(body);
                                 return [4 /*yield*/, Product_1.Product.create({
                                         nombre: fields.nombre,
                                         categoria: fields.categoria.toLowerCase(),

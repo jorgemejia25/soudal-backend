@@ -68,6 +68,7 @@ export class ProductController {
         },
         async (error, response, body) => {
           console.log(ruta);
+          console.log(body);
 
           const lastProductCreated = await Product.create({
             nombre: fields.nombre as string,
