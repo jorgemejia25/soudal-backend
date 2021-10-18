@@ -102,13 +102,14 @@ var ProductController = /** @class */ (function () {
                             case 0:
                                 console.log(ruta);
                                 console.log(body);
+                                console.log(finalUrl);
                                 return [4 /*yield*/, Product_1.Product.create({
                                         nombre: fields.nombre,
                                         categoria: fields.categoria.toLowerCase(),
                                         descripcion: fields.descripcion,
                                         caracteristicas: fields.caracteristicas,
                                         aplicaciones: fields.aplicaciones,
-                                        imagen: JSON.parse(body).data.url,
+                                        // imagen: JSON.parse(body).data.url,
                                     })];
                             case 1:
                                 lastProductCreated = _a.sent();
