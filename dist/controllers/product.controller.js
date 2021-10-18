@@ -93,7 +93,7 @@ var ProductController = /** @class */ (function () {
                     method: "POST",
                     form: {
                         key: "7fdacf80f6dae833d604004e1bf5a436",
-                        image: files.img,
+                        image: finalUrl,
                     },
                 }, function (error, response, body) { return __awaiter(_this, void 0, void 0, function () {
                     var lastProductCreated;
@@ -102,14 +102,13 @@ var ProductController = /** @class */ (function () {
                             case 0:
                                 console.log(ruta);
                                 console.log(body);
-                                console.log(finalUrl);
                                 return [4 /*yield*/, Product_1.Product.create({
                                         nombre: fields.nombre,
                                         categoria: fields.categoria.toLowerCase(),
                                         descripcion: fields.descripcion,
                                         caracteristicas: fields.caracteristicas,
                                         aplicaciones: fields.aplicaciones,
-                                        // imagen: JSON.parse(body).data.url,
+                                        imagen: JSON.parse(body).data.url,
                                     })];
                             case 1:
                                 lastProductCreated = _a.sent();

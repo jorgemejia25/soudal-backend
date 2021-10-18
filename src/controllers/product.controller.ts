@@ -63,13 +63,12 @@ export class ProductController {
           method: "POST",
           form: {
             key: "7fdacf80f6dae833d604004e1bf5a436",
-            image: files.img,
+            image: finalUrl,
           },
         },
         async (error, response, body) => {
           console.log(ruta);
           console.log(body);
-          console.log(finalUrl);
 
           const lastProductCreated = await Product.create({
             nombre: fields.nombre as string,
@@ -77,7 +76,7 @@ export class ProductController {
             descripcion: fields.descripcion as string,
             caracteristicas: fields.caracteristicas as string,
             aplicaciones: fields.aplicaciones as string,
-            // imagen: JSON.parse(body).data.url,
+            imagen: JSON.parse(body).data.url,
           });
 
           return res.status(201).json({

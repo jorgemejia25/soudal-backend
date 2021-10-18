@@ -7,14 +7,24 @@ exports.sequelize = void 0;
 var sequelize_1 = require("sequelize");
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-exports.sequelize = new sequelize_1.Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
-    dialect: "postgres",
-    ssl: true,
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false,
+var options = {};
+if (!process.env.PRODUCTION) {
+    options = {
+        host: process.env.DB_HOST,
+        dialect: "postgres",
+        ssl: true,
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false,
+            },
         },
-    },
-});
+    };
+}
+else {
+    options = {
+        host: process.env.DB_HOST,
+        dialect: "postgres",
+    };
+}
+exports.sequelize = new sequelize_1.Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASS, options);
